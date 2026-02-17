@@ -8,7 +8,7 @@ import jwt from "jsonwebtoken";
 const registerUser=AsyncHandler(async(req,res)=>{
      //taking details from frontend
     const {email,fullname,password}=req.body;
-    //checking the required details
+    
     if(!email||!fullname||!password){
         throw new ApiError(400,"missing  details are  required  ")
     }
@@ -31,7 +31,7 @@ const registerUser=AsyncHandler(async(req,res)=>{
     const accessToken=user.generateAccessToken();
     const refreshToken=user.generateRefreshToken();
 
-    //sending responses
+     
    return  res.status(201)
    //creating cookies to for connection between client and server semalessly  
     .cookie('accessToken',accessToken,{
@@ -142,7 +142,7 @@ const refreshToken=AsyncHandler(async(req,res)=>{
 //logout controller
 const logoutUser=AsyncHandler(async(req,res)=>{
 
-    //returning response
+     
     return  res.status(200)
     //clearing all the saved  cookies
     .clearCookie('accessToken')
@@ -153,7 +153,7 @@ const logoutUser=AsyncHandler(async(req,res)=>{
 const deleteUser=AsyncHandler(async(req,res)=>{
     //getting id from the url
     const id=req.params.id
-    //finding the user
+ 
     const user=await User.findById(id)
 
     if(!user){
