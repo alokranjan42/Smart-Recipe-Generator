@@ -1,11 +1,11 @@
-import {User} from '../models.js'
-import {AsyncHandler} from '../utils/AsyncHandler.js'
+import {User} from '../models/user.models.js'
+import {asyncHandler} from '../utils/AsyncHandler.js'
 import {ApiResponse} from '../utils/ApiResponse.js'
 import {ApiError } from '../utils/ApiError.js'
 import bcrypt from 'bcrypt'
 import jwt from "jsonwebtoken";
 
-const registerUser=AsyncHandler(async(req,res)=>{
+const registerUser=asyncHandler(async(req,res)=>{
      //taking details from frontend
     const {email,fullname,password}=req.body;
     
@@ -48,7 +48,7 @@ const registerUser=AsyncHandler(async(req,res)=>{
 })
 
 //login user 
-const loginUser=AsyncHandler(async(req,res)=>{
+const loginUser=asyncHandler(async(req,res)=>{
 
     //taking the details from frontend
     const {email,password}=req.body
@@ -94,7 +94,7 @@ const loginUser=AsyncHandler(async(req,res)=>{
 
 
 //getting user 
-const getUser=AsyncHandler(async(req,res)=>{
+const getUser=asyncHandler(async(req,res)=>{
      
     //finding User in database
     const user=await User.findById(req.params.id).select("-password")
@@ -107,7 +107,7 @@ const getUser=AsyncHandler(async(req,res)=>{
     .json(new ApiResponse(200,user,"user found" ))
 
 })
-const refreshToken=AsyncHandler(async(req,res)=>{
+const refreshToken=asyncHandler(async(req,res)=>{
     //requesting the refreshtoken
   const token=req.cookies.refreshToken;
   if(!token){
@@ -140,7 +140,7 @@ const refreshToken=AsyncHandler(async(req,res)=>{
 })
 
 //logout controller
-const logoutUser=AsyncHandler(async(req,res)=>{
+const logoutUser=asyncHandler(async(req,res)=>{
 
      
     return  res.status(200)
@@ -150,7 +150,7 @@ const logoutUser=AsyncHandler(async(req,res)=>{
     .json(new ApiResponse(200,null,"user logged out"))
     
 })
-const deleteUser=AsyncHandler(async(req,res)=>{
+const deleteUser=asyncHandler(async(req,res)=>{
     //getting id from the url
     const id=req.params.id
  
