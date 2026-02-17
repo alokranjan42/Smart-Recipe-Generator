@@ -1,10 +1,11 @@
-import {AsyncHandler} from '../utils/AsyncHandler.js'
-import {User} from '../models/models.user.js'
+import {asyncHandler} from '../utils/AsyncHandler.js'
+import {User} from '../models/user.models.js'
 import jwt from 'jsonwebtoken'
 import {ApiError} from '../utils/ApiError.js'
 
 
-const authMiddleware=AsyncHandler(async(req,res,next)=>{
+const  verifyJWT=asyncHandler(async(req,res,next)=>{
+    //getting accesstoken to verify the user credentials
     const token=req.cookies?.accessToken||
     req.headers?.authorization?.replace("Bearer ","");
     if(!token){
@@ -20,7 +21,8 @@ const authMiddleware=AsyncHandler(async(req,res,next)=>{
     }
 
     req.user=user;
+
     next();
 
 })
-export default authMiddleware
+export   {verifyJWT}

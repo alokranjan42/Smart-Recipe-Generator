@@ -1,15 +1,18 @@
 import {Router } from 'express'
-import { matchRecipies,
-    recipeFilter,
+import { 
     saveRecipe,
-    rateRecipe} from '../controllers/recipe.contoller.js'
+    rateRecipe,
+    getAllRecipes} from '../controllers/recipe.contoller.js'
 
     const router=Router()
 
-    router.route("/recipe").post(saveRecipe)
-    router.route("/recipe").get(recipeFilter)
-    router.route("/recipe").post(rateRecipe)
-    router.route("/recipe").post(matchRecipies)
+    router.route("/save/:id").post(saveRecipe)
+    router.route("/rate/:id").post(rateRecipe)
+    router.route("/get").get(getAllRecipes)
 
 
     export default router
+
+
+
+ 

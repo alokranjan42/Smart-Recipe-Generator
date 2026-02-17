@@ -5,7 +5,7 @@ const dbConnect=async()=>{
    console.log("mongodb connected");
 
   }catch(err){
-    console.log("error occured while connecting db");
+    console.log("error occured while connecting db",err);
     process.exit(1);
   }
 }
