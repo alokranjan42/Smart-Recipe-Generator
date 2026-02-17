@@ -6,3 +6,6 @@ build/
 out/
 .DB_Store
 .npm/
+.env
+.env.*
+**/.env
