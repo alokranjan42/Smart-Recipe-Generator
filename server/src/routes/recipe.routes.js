@@ -1,18 +1,19 @@
-import {Router } from 'express'
-import { 
+import { Router } from 'express'
+import {
     saveRecipe,
     rateRecipe,
-    getAllRecipes} from '../controllers/recipe.contoller.js'
+    getAllRecipes,
+    createRecipe,
+    getSavedRecipes
+} from '../controllers/recipe.contoller.js'
+import { verifyJWT } from '../middlewares/auth.middleware.js'
 
-    const router=Router()
+const router = Router()
 
-    router.route("/save/:id").post(saveRecipe)
-    router.route("/rate/:id").post(rateRecipe)
-    router.route("/get").get(getAllRecipes)
+router.route("/get").get(getAllRecipes)
+router.route("/create").post(verifyJWT, createRecipe)
+router.route("/saved").get(verifyJWT, getSavedRecipes)
+router.route("/save/:id").post(verifyJWT, saveRecipe)
+router.route("/rate/:id").post(verifyJWT, rateRecipe)
 
-
-    export default router
-
-
-
- 
+export default router

@@ -15,7 +15,7 @@ const generateRecipeByAi = asyncHandler(async (req, res) => {
         throw new ApiError(400, "Ingredients are required");
     }
 
-    // Use gemini-2.0-flash for best free-tier compatibility in 2026
+ 
     const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
     const prompt = `Generate 3 simple recipes using: ${ingredients}. Diet: ${diet}. 
