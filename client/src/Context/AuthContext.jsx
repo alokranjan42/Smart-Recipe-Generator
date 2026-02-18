@@ -1,31 +1,48 @@
 import React from 'react'
-import axios from 'axios'
-import {createContext,useContext,useState} from 'react'
-import API from '../Api.js'
+import { createContext, useContext, useState, useEffect } from "react";
+import API from "../Api.js";
 
-const AuthContext=createContext();
+const AuthContext = createContext();
 
-export const AuthProvider=({children}) =>{
-    const [user,setUser]=useState(null);
+export const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-    const register=async(data)=>{
-        const response=await axios.post('/auth/registerUser',data);
-        setUser(response.data.data);
-
-    }
-
-    const login=async(data)=>{
-        const response=await axios.post('/auth/loginUser',data);
-        setUser(response.data.data);
-    }
-    const logout=async()=>{
-        await API.post("/auth/logoutUser");
+ 
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const res = await API.get("/users/me");
+        setUser(res.data.data);
+      } catch (err) {
         setUser(null);
-    }
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUser();
+  }, []);
+
+  const register = async (data) => {
+    const res = await API.post("/users/registerUser", data);
+    setUser(res.data.data);
+  };
+
+  const login = async (data) => {
+    const res = await API.post("/users/login", data);
+    setUser(res.data.data);
+  };
+
+  const logout = async () => {
+    await API.post("/users/logout");
+    setUser(null);
+  };
+
   return (
-     <AuthContext.Provider value={{user,register,logout,login}}>
-     {children}
-     </AuthContext.Provider>
+    <AuthContext.Provider value={{ user, register, login, logout, loading }}>
+      {children}
+    </AuthContext.Provider>
   );
 };
 
