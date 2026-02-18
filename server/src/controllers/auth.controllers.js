@@ -6,11 +6,10 @@ import bcrypt from 'bcrypt'
 import jwt from "jsonwebtoken";
 
 
- 
-const cookieOptions = {
+  const cookieOptions = {
   httpOnly: true,
-  secure: false,
-  sameSite: "lax",
+  secure: true,      
+  sameSite: "none",       
 };
 
 
