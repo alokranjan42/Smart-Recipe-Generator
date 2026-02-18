@@ -1,0 +1,11 @@
+node_modules/
+.env
+logs
+dist/
+build/
+out/
+.DB_Store
+.npm/
+.env
+.env.*
+**/.env
