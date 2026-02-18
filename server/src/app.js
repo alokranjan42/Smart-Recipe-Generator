@@ -22,7 +22,7 @@ app.use('/api/recipes', recipeRouter)
 app.use('/api/ai', aiRouter)
 
  
-app.use((err, req, res) => {
+app.use((err, req, res,next) => {
   const statusCode = err.statusCode || 500;
   res.status(statusCode).json({
     success: false,
