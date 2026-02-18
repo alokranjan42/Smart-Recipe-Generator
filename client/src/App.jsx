@@ -8,6 +8,7 @@ import CreateRecipe from './pages/CreateRecipe'
 import Home from './pages/Home'
 import SavedRecipes from './pages/SavedRecipes'
 import ProtectedRoute from './Components/ProtectedRoute'
+import AiRecipe from './pages/Airecipe'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path='/register' element={<Registerpage />} />
         <Route path='/login' element={<LoginPage />} />
         <Route path='/' element={<Home />} />
+        <Route path='/airecipe' element={<AiRecipe/>} />
         <Route
           path="/dashboard"
           element={

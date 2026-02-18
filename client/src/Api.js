@@ -1,8 +1,8 @@
  import axios from "axios";
 
 const API = axios.create({
-    baseURL: "http://localhost:8002/api",
-    withCredentials: true, // ⭐⭐⭐ THIS WAS MISSING
+    baseURL: "https://smart-recipe-generator-1-6rv2.onrender.com/api",
+    withCredentials: true, 
 });
 
 // attach token from localStorage (backup auth)

@@ -21,6 +21,7 @@ const Navbar=() =>{
        <>
          <Link to="/create" className="hover:text-gray-200 transition pr-4">Create Recipe</Link>
          <Link to="/dashboard" className="hover:text-gray-200 transition pr-4">Dashboard</Link>
+          <Link to="/airecipe" className="hover:text-gray-200 transition pr-4">Generate  with Ai</Link>
          <button onClick={handleLogout} className="hover:text-gray-200 transition pr-4">Logout</button>
        </>
      )}
